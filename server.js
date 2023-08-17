@@ -22,12 +22,12 @@ app.get('/data', (req, res) => {
     const timelineJS_object = {
         title: {
             media: {
-              url: "download.jpeg",
-              caption: "Whitney Houston performing on her My Love is Your Love Tour in Hamburg."
+              url: "images/"+"download.jpeg",
+              caption: "Title Page Image caption"
             },
             text: {
-              headline: "Whitney Houston<br/> 1963 - 2012",
-              text: "<p>Houston's voice caught the imagination of the world propelling her to superstardom at an early age becoming one of the most awarded performers of our time. This is a look into the amazing heights she achieved and her personal struggles with substance abuse and a tumultuous marriage.</p>"
+              headline: "Headline Text",
+              text: "title page example text"
             }
         },
         events: []
@@ -39,7 +39,7 @@ app.get('/data', (req, res) => {
             console.log('adding row data', row);
             timelineJS_object.events.push({
                 "media": {
-                  "url": row['Media'],
+                  "url": "images/"+row['Media'],
                   "caption": row['Media_Caption'],
                   "credit": row['Media_Credit']
                 },
