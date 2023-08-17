@@ -1,4 +1,5 @@
 Year,Month,Day,End_Year,End_Month,End_Day,Headline,Text,Media,Media_Credit,Media_Caption,Background_hex,Background_url
-2010,04,20,2010,04,23,TimeSpan Title,Example Text for this TimeSpan,download.jpeg,Media Credit Text,Media Caption,#3333f3,
+2010,4,20,2010,4,23,TimeSpan Title,Example Text for this TimeSpan,download.jpeg,Media Credit Text,Media Caption,#3333f3,
 2010,1,15,,,,Single day event,Here is the text for that,download.jpeg,Media Credit Text 2,Image Caption 2,#222222,
-2010,04,22,2010,05,5,Second Timespan,Text for this,,,,,
+2010,4,22,2010,5,5,Second Timespan,Text for this,,,,,
+2010,5,20,,,,example,Text for this,,,,,
