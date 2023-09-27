@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html style = "height: 100%;">
     <head>
         <meta charset="utf-8">
         <link href="index.css" rel="stylesheet">
     </head>
-    <body>
+    <body style="margin: 0; padding: 0; height: 98%; overflow: hidden;">
 
         <!-- TimeLine Styling from knightlab -->
         <link title="timeline-styles" rel="stylesheet" 
@@ -13,7 +13,7 @@
          
 
         <!-- HTML object to put the timeline in -->
-        <div id='timeline-embed' style="width: 100%; height: 600px"></div>
+        <div id='timeline-embed' style="width: 100%; height: 100%"></div>
 
 
         <!-- JS dependencies -->
@@ -47,8 +47,21 @@
                 }
             }
             
-
             fetchDataAndBuildTimeline()
+
+
+            //New code for shutdown procedure Registers closing correctly, but does not show
+            window.addEventListener('beforeunload', (event) => {
+                event.preventDefault();
+                fetch('/notify-close', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({message: 'Page is closing'}),
+
+                });
+            });
 
         </script>
 
