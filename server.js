@@ -6,6 +6,7 @@ const csvParser = require('csv-parser');
 const ExcelJS = require('exceljs');
 
 const app = express();
+const server = http.createServer(app);
 
 const PORT = 3000;
 const jsonFile = "data.json";
@@ -30,7 +31,6 @@ function removeEmptyFields(obj) {
     }
     return obj;
 }
-  
 
 
 app.get('/data', async (req, res) => {
@@ -114,7 +114,14 @@ app.listen(PORT, () => {
 });
 
 app.post('/notify-close', (req, res) => {
-    console.log('Client is closing the page');
+    console.log('Server recieved shutdown command');
+
+    // shut down express server
+    server.close(() => {
+        console.log('Server has been shut down');
+        process.exit(0);
+    });
+
     //Server side shutdown
     res.status(200).send('Recieved notifiation');
 
