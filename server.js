@@ -46,58 +46,91 @@ app.get('/data', async (req, res) => {
         
     
 
-        const timelineJS_object = {
-            title: {
-                media: {
-                url: "images/"+"download.jpeg",
-                caption: "Title Page Image caption"
-                },
-                text: {
-                headline: "Headline Text",
-                text: "title page example text"
-                }
-            },
-            events: []
-        };
+        var timelineJS_object = {};
 
 
         worksheet.eachRow((row, rowNum) => {
-            if (rowNum > 1){ //skip the header row
+
+
+            if (rowNum == 2){
+                const rowData = {};
+                row.eachCell((cell, colNum) => {
+                    rowData[worksheet.getRow(1).getCell(colNum).value] = cell.value;
+                });
+                timelineJS_object = {
+                    title: {
+                        ...(rowData['Media'] ? {
+                            "media": 
+                                {
+                                "url": "media/"+rowData['Media'],
+                                "caption": rowData['Media_Caption'],
+                                "credit": rowData['Media_Credit']
+                                }
+                        } : {}),
+
+                        text: {
+                        headline: rowData['Headline'],
+                        text: rowData['Text']
+                        }
+                    },
+                    events: []
+                };
+            }
+            if (rowNum > 2){ //skip the header row
                 const rowData = {};
                 row.eachCell((cell, colNum) => {
                     rowData[worksheet.getRow(1).getCell(colNum).value] = cell.value;
                 });
 
                 timelineJS_object.events.push({
-                    "media": {
-                    "url": "images/"+rowData['Media'],
-                    "caption": rowData['Media_Caption'],
-                    "credit": rowData['Media_Credit']
-                    },
+
+                    ...(rowData['Media'] ? {
+                        "media": 
+                            {
+                            "url": "media/"+rowData['Media'],
+                            "caption": rowData['Media_Caption'],
+                            "credit": rowData['Media_Credit']
+                            }
+                    } : {
+                        "media": 
+                            {
+                            "url": "<iframe src = testiframe.html width = 100% height = 100% frameborder=0 style=border: none draggable=true></iframe>",
+                            "caption": rowData['Media_Caption'],
+                            "credit": rowData['Media_Credit']
+                            }
+                    })
+                    
+                    ,
                     "start_date": {
-                    "month": rowData['Month'],
-                    "day": rowData['Day'],
-                    "year": rowData['Year'],
+                        "month": rowData['Month'],
+                        "day": rowData['Day'],
+                        "year": rowData['Year'],
+                        "hour": rowData['Hour'],
+                        "minute": rowData['Minute']
                     },
                     "end_date": {
                         "month": rowData['End_Month'],
                         "day": rowData['End_Day'],
-                        "year": rowData['End_Year']
+                        "year": rowData['End_Year'],
+                        "hour": rowData['End_Hour'],
+                        "minute": rowData['End_Minute']
                     },
                     "text": {
-                    "headline": rowData['Headline'],
-                    "text": rowData['Text']
+                        "headline": rowData['Headline'],
+                        "text": rowData['Text']
                     },
                     "background": {
                         "color": rowData['Background_hex'],
-                        "url": rowData['Background_url']
+                        "url": "media/"+rowData['Background_url']
                     },
                 });
             }
         });
 
         // remove empty fields
-        cleanedTimelineJSObject = removeEmptyFields(timelineJS_object);
+        
+        const cleanedTimelineJSObject = removeEmptyFields(timelineJS_object);
+        // console.log(JSON.stringify(timelineJS_object));
 
         console.log('JSON creation completed');
         const responsiveData = cleanedTimelineJSObject;
