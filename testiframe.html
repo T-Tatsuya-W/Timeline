@@ -1,96 +1,19 @@
-<!--
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Media Slideshow</title>
-    <style>
-        .slideshow {
-            display: flex;
-            overflow: hidden;
-            width: 800px;
-            margin: 0 auto;
-        }
-        .slide {
-            flex: 0 0 800px;
-        }
-        .controls {
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Media Slideshow</h1>
-    <div class="slideshow">
-        <div class="slide">
-            <h2>Image 1</h2>
-            <img src="media/tonyParrot.jpg" alt="Image 1" width="800" height="400">
-        </div>
-        <div class="slide">
-            <h2>Video</h2>
-            <video controls width="800" height="400">
-                <source src="media/KANGA.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="slide">
-            <h2>Audio</h2>
-            <audio controls>
-                <source src="media/untitled-3.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-    </div>
-
-    <div class="controls">
-        <button onclick="prevSlide()">Previous</button>
-        <button onclick="nextSlide()">Next</button>
-    </div>
-
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.style.transform = `translateX(${100 * (i - index)}%)`;
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        // Initial display
-        showSlide(currentSlide);
-    </script>
-</body>
-</html>
-
-
-
--->
-
-
 <!DOCTYPE html>
 <html> 
     <body>
+
         <img src="media/tonyParrot.jpg">
+
         <audio controls>
             <source src="media/untitled-3.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+
         <video width="640" height="360" controls>
             <source src="media/KANGA.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+
     </body>
 </html>
 
