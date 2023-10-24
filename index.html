@@ -49,7 +49,68 @@
             
             fetchDataAndBuildTimeline()
 
-            
+            const autoScrollCooldown = 1; //(seconds)
+            let countdownTimer;
+
+            let forward = true;
+            let Fbutton; 
+            let Bbutton;
+
+            // Function to start the countdown
+            function startCountdown() {
+                // Clear any previous countdown
+                clearTimeout(countdownTimer);
+
+                // Set a new countdown for 10 seconds
+                countdownTimer = setTimeout(function () {
+                // This code will execute if there's no interaction in 10 seconds
+                console.log('No interaction detected for '+autoScrollCooldown+' seconds.');
+
+
+                // Check movement decision
+                // if moving forward, and forward is hidden move backwards
+                // if moving backwards, and backward is hidden, move forward
+
+                if (forward){
+                    if (window.getComputedStyle(Fbutton).display === 'none') {
+                        forward = false;
+                    }
+                } else {
+                    if (window.getComputedStyle(Bbutton).display === 'none') {
+                        forward = true;
+                    }
+                }
+                
+
+                // Simulate a click on the button
+                if (forward){
+                    Fbutton.click();
+                } else {
+                Bbutton.click();
+                }
+
+                }, 1000*autoScrollCooldown); // 10 seconds (10000 milliseconds)
+            }
+
+            // Add event listeners to detect interactions
+            window.addEventListener('click', function () {
+                console.log("click");
+                Fbutton = document.querySelector('.tl-slidenav-next');
+                Bbutton = document.querySelector('.tl-slidenav-previous');
+                // Bbutton.click();
+                // User clicked, so restart the countdown
+                startCountdown();
+            });
+
+            window.addEventListener('keydown', function () {
+                // User pressed a key, so restart the countdown
+                startCountdown();
+            });
+
+
+
+
+
             
             //New code for shutdown procedure Registers closing correctly, but does not show
             window.addEventListener('beforeunload', (event) => {
