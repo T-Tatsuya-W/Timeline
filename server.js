@@ -128,9 +128,6 @@ app.get('/data', async (req, res) => {
                     rowData[worksheet.getRow(1).getCell(colNum).value] = cell.value;
                 });
 
-                //var htmlText = excelText.replace(/\n/g, "<br>");
-                console.log(rowData['Text'].replace(/\n/g, "<br>"));
-
                 timelineJS_object.events.push({
                     ...(rowData['Media'] ? {
                         "media": 
