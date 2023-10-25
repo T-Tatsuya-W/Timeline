@@ -54,10 +54,10 @@ function makeMedia(folderName){
                         htmlContent += `\n<img src="${folderName}/${file}" style="width: 100%" >\n`;
                     } else if (fileExtension === '.mp3') {
                         // Audio
-                        htmlContent += `\n<audio controls>\n<source src="${folderName}/${file}" type="audio/mpeg">\nYour browser does not support the audio element.\n</audio>\n`;
+                        htmlContent += `\n<audio controls style="display: block; margin: 0 auto;">\n<source src="${folderName}/${file}" type="audio/mpeg">\nYour browser does not support the audio element.\n</audio>\n`;
                     } else if (fileExtension === '.mp4') {
                         // Video
-                        htmlContent += `\n<video width="640" height="360" controls>\n<source src="${folderName}/${file}" type="video/mp4" >\nYour browser does not support the video tag.\n</video>\n`;
+                        htmlContent += `\n<video width="100%" controls >\n<source src="${folderName}/${file}" type="video/mp4" >\nYour browser does not support the video tag.\n</video>\n`;
                     }
                 });
 
@@ -112,9 +112,13 @@ app.get('/data', async (req, res) => {
                         } : {}),
 
                         text: {
-                        headline: rowData['Headline'],
-                        text: rowData['Text']
-                        }
+                            headline: rowData['Headline'].replace(/\n/g, "<br>"),
+                            text: rowData['Text'].replace(/\n/g, "<br>")
+                        },
+                        background: {
+                            "color": rowData['Background_hex'],
+                            "url": makeMedia(rowData['Background_url'])
+                        },
                     },
                     events: []
                 };
@@ -123,6 +127,9 @@ app.get('/data', async (req, res) => {
                 row.eachCell((cell, colNum) => {
                     rowData[worksheet.getRow(1).getCell(colNum).value] = cell.value;
                 });
+
+                //var htmlText = excelText.replace(/\n/g, "<br>");
+                console.log(rowData['Text'].replace(/\n/g, "<br>"));
 
                 timelineJS_object.events.push({
                     ...(rowData['Media'] ? {
@@ -149,8 +156,8 @@ app.get('/data', async (req, res) => {
                         "minute": rowData['End_Minute']
                     },
                     "text": {
-                        "headline": rowData['Headline'],
-                        "text": rowData['Text']
+                        "headline": rowData['Headline'].replace(/\n/g, "<br>"),
+                        "text": rowData['Text'].replace(/\n/g, "<br>")
                     },
                     "background": {
                         "color": rowData['Background_hex'],
