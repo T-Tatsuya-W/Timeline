@@ -14,7 +14,7 @@ Once these are verified, dependencies can be installed with ``npm install``
 
 ## Starting up the timeline
 
-Click on `startup.bat` ()or a shortcut to the same file). 
+Click on `startup.bat` or a shortcut to the same file). 
 
 This will
 
