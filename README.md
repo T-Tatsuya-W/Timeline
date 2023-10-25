@@ -35,6 +35,6 @@ You will have to restart the server in order to have these appear on the timelin
 - reopen the timeline by clicking on the startup file
 - 
 
-### Next stages
+### ## If you ever `git pull` to update the code
 
-- tidy excel, tidy code etc, final formatting thing
+please keep a backup of your media and your excel as these might get overwritten in this process.
