@@ -18,12 +18,9 @@ Then, clicking on the `startup.bat` or a shortcut to the same file will automati
 
 All the data is stored in a local excel file, adding new rows of data to this will add more slides to the timeline.
 
-You will have to restart the server in order to have these appear on the timeline. 
+You will have to restart the server in order to have these appear on the timeline.
 
-## Next stages
+# Next stages, 
 
-- Add compatibility for other media, (multiple images, slideshow?, background with many images, music, videos, combinations fo images and music, videos etc.
-- Links to pages eg Facebook
-- Bottom right timeline link to be replaced?
-- images in folders with names.
-- tidy the csv to be user friendly.
+- tidy excel, tidy code etc, final formatting things
+-
