@@ -1,6 +1,8 @@
 # Timeline
 
-## To setup and run this page
+** try to startup the timeline without downloading dependencies first, this may work **
+
+## Downloading Dependencies
 
 You will need to ensure you have Node.js and npm installed. They come together and can be installed from the [Official Node.js Website](https://nodejs.org/en/download).
 You can check you have these two packages installed by checking their versions with terminal commands.
@@ -12,15 +14,29 @@ npm -v
 
 Once these are verified, dependencies can be installed with ``npm install``
 
-Then, clicking on the `startup.bat` or a shortcut to the same file will automatically start the serverside program, and launch the page in a browser.
+## Starting up the timeline
+
+Click on `startup.bat` ()or a shortcut to the same file). 
+
+This will
+
+- automatically start the server side program,
+- launch the page in a browser.
 
 ## To add new entries
 
-All the data is stored in a local excel file, adding new rows of data to this will add more slides to the timeline.
+All the data is stored in a local excel file `data.xlsx`
 
-You will have to restart the server in order to have these appear on the timeline.
+Adding new rows of data to this will add more slides to the timeline, ordered by date.
 
-# Next stages, 
+You will have to restart the server in order to have these appear on the timeline,
 
-- tidy excel, tidy code etc, final formatting things
--
+- ensure your changes have saved
+- close the page,
+- close the server terminal if it didn't automatically `ctrl + c`
+- reopen the timeline by clicking on the startup file
+- 
+
+### Next stages
+
+- tidy excel, tidy code etc, final formatting thing
