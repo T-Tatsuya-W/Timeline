@@ -2,7 +2,6 @@
 <html style = "height: 100%;">
     <head>
         <meta charset="utf-8">
-        
     </head>
     <body style="margin: 0; padding: 0; height: 100%; overflow: hidden;">
 
@@ -10,25 +9,14 @@
         <link title="timeline-styles" rel="stylesheet" 
         href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
 
-         
-
         <!-- HTML object to put the timeline in -->
         <div id='timeline-embed' style="width: 100%; height: 100%"></div>
-
 
         <!-- JS dependencies -->
         <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
        
-
         <!-- Main script to handle Timeline -->
         <script type="text/javascript">
-            // The TL.Timeline constructor takes at least two arguments:
-            // the id of the Timeline container (no '#'), and
-            // the URL to your JSON data file or Google spreadsheet.
-            // the id must refer to an element "above" this code,
-            // and the element must have CSS styling to give it width and height
-            // optionally, a third argument with configuration options can be passed.
-            // See below for more about options.
             
             async function fetchDataAndBuildTimeline(){
                 try{
@@ -49,46 +37,36 @@
             
             fetchDataAndBuildTimeline()
 
-            const autoScrollCooldown = 1; //(seconds)
-            let countdownTimer;
 
+            // ------------------------ SET AUTO SCROLL COOLDOWN HERE ------------------------
+            const autoScrollCooldown = 300; //(in seconds)
+            // -------------------------------------------------------------------------------
+            
+
+            let countdownTimer;
             let forward = true;
             let Fbutton; 
             let Bbutton;
 
-            // Function to start the countdown
             function startCountdown() {
-                // Clear any previous countdown
                 clearTimeout(countdownTimer);
-
-                // Set a new countdown for 10 seconds
                 countdownTimer = setTimeout(function () {
-                // This code will execute if there's no interaction in 10 seconds
-                console.log('No interaction detected for '+autoScrollCooldown+' seconds.');
-
-
-                // Check movement decision
-                // if moving forward, and forward is hidden move backwards
-                // if moving backwards, and backward is hidden, move forward
-
-                if (forward){
-                    if (window.getComputedStyle(Fbutton).display === 'none') {
-                        forward = false;
+                    console.log('No interaction detected for '+autoScrollCooldown+' seconds.');
+                    if (forward){
+                        if (window.getComputedStyle(Fbutton).display === 'none') {
+                            forward = false;
+                        }
+                    } else {
+                        if (window.getComputedStyle(Bbutton).display === 'none') {
+                            forward = true;
+                        }
                     }
-                } else {
-                    if (window.getComputedStyle(Bbutton).display === 'none') {
-                        forward = true;
+                    // Simulate a click on the button
+                    if (forward){
+                        Fbutton.click();
+                    } else {
+                        Bbutton.click();
                     }
-                }
-                
-
-                // Simulate a click on the button
-                if (forward){
-                    Fbutton.click();
-                } else {
-                Bbutton.click();
-                }
-
                 }, 1000*autoScrollCooldown); 
             }
 
@@ -107,11 +85,6 @@
                 startCountdown();
             });
 
-
-
-
-
-            
             //New code for shutdown procedure Registers closing correctly, but does not show
             window.addEventListener('beforeunload', (event) => {
                 event.preventDefault();
@@ -121,13 +94,9 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({message: 'Page is closing'}),
-
                 });
             });
             
-
-
         </script>
-
     </body>
 </html>
