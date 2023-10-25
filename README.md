@@ -12,13 +12,13 @@ npm -v
 
 Once these are verified, dependencies can be installed with ``npm install``
 
-Once these have been installed, the server code can be initiated with ``npm start``
-This will tell you where the page is being hosted. Clicking or copying this link into a browser will take you to the site.
+Then, clicking on the `startup.bat` or a shortcut to the same file will automatically start the serverside program, and launch the page in a browser.
 
 ## To add new entries
 
 All the data is stored in a local excel file, adding new rows of data to this will add more slides to the timeline.
-You will have to restart the server in order to have these updated to the server since the backend must first convert this into JSON format for the Timeline.js to then work with it.
+
+You will have to restart the server in order to have these appear on the timeline. 
 
 ## Next stages
 
