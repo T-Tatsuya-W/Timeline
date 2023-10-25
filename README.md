@@ -1,7 +1,5 @@
 # Timeline
 
-** try to startup the timeline without downloading dependencies first, this may work **
-
 ## Downloading Dependencies
 
 You will need to ensure you have Node.js and npm installed. They come together and can be installed from the [Official Node.js Website](https://nodejs.org/en/download).
