@@ -27,7 +27,15 @@
                     }
                     const data = await response.json();
                     console.log(data);
-                    timeline = new TL.Timeline('timeline-embed', data);
+
+                    // ---------------------------------- SET NAV BAR SIZE -------------------------------
+                    var options = {
+                        timenav_height_percentage: 20,
+                        timenav_height_min: 50
+                    }
+                    // -----------------------------------------------------------------------------------
+
+                    timeline = new TL.Timeline('timeline-embed', data, options);
                     console.log("timline created in index js");
 
                 } catch (error){
@@ -47,6 +55,7 @@
             let forward = true;
             let Fbutton; 
             let Bbutton;
+            let TLnav;
 
             function startCountdown() {
                 clearTimeout(countdownTimer);
